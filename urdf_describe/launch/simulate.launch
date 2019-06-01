@@ -1,0 +1,21 @@
+<launch>
+
+  <arg name="robot" default="agent"/>
+
+  <!-- Start Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find urdf_describe)/worlds/open.world"/>
+    <arg name="debug" value="false" />
+    <arg name="gui" value="false" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="verbose" value="false"/>
+  </include>
+
+  <!-- Introduce the Robot -->
+  <include file="$(find urdf_describe)/launch/include/$(arg robot).launch.xml" />
+
+  <!--node    name="rviz"    pkg="rviz"    type="rviz"    args="-d $(find robot_sim_demo)/urdf_gazebo.rviz" /-->
+  
+</launch>

@@ -1,0 +1,172 @@
+<?xml version = "1.0"?>
+<robot name = "agent" xmlns:xacro = "http://ros.org/wiki/xacro">
+
+    <!-- front left foot -->
+    <xacro:macro name = "front_left_foot">
+            
+        <!--   Joint for left front foot  -->
+        <joint name="joint_front_left_foot_yaw" type="revolute">
+
+            <origin rpy="0 0 0" xyz="${leg_intra_length} ${-leg_diameter/2} 0"/> 
+            <parent link="link_front_left_leg" />
+            <child link="link_front_left_foot"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${knee_lower_radians}" upper="${knee_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${knee_damping}" friction="${knee_friction}" />
+
+        </joint>
+
+        <link name="link_front_left_foot">
+
+            <inertial>
+                <mass value="${foot_mass}"/>
+                <origin rpy="0 0 ${PId4}" xyz="${foot_centroid_x} ${foot_centroid_y} ${foot_height/2}"/>
+                <inertia ixx="${foot_Ixx}" ixy="${foot_Ixy}" ixz="${foot_Ixz}" iyy="${foot_Iyy}" iyz="${foot_Iyz}" izz="${foot_Izz}"/>
+            </inertial>
+            
+            <collision name="link_front_left_foot_collision">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_front_left_foot_visual">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+                <material name="black"/>   
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- front right foot -->
+    <xacro:macro name = "front_right_foot">
+            
+        <!--   Joint for right front foot  -->
+        <joint name="joint_front_right_foot_yaw" type="revolute">
+
+            <origin rpy="0 0 0" xyz="${leg_intra_length} ${-leg_diameter/2} 0"/> 
+            <parent link="link_front_right_leg" />
+            <child link="link_front_right_foot"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${knee_lower_radians}" upper="${knee_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${knee_damping}" friction="${knee_friction}" />
+
+        </joint>
+
+        <link name="link_front_right_foot">
+
+            <inertial>
+                <mass value="${foot_mass}"/>
+                <origin rpy="0 0 ${PId4}" xyz="${foot_centroid_x} ${foot_centroid_y} ${foot_height/2}"/>
+                <inertia ixx="${foot_Ixx}" ixy="${foot_Ixy}" ixz="${foot_Ixz}" iyy="${foot_Iyy}" iyz="${foot_Iyz}" izz="${foot_Izz}"/>
+            </inertial>
+            
+            <collision name="link_front_right_foot_collision">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_front_right_foot_visual">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+                <material name="black"/>   
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- hind left foot -->
+    <xacro:macro name = "hind_left_foot">
+            
+        <!--   Joint for left hind foot  -->
+        <joint name="joint_hind_left_foot_yaw" type="revolute">
+
+            <origin rpy="0 0 0" xyz="${leg_intra_length} ${-leg_diameter/2} 0"/> 
+            <parent link="link_hind_left_leg" />
+            <child link="link_hind_left_foot"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${knee_lower_radians}" upper="${knee_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${knee_damping}" friction="${knee_friction}" />
+
+        </joint>
+
+        <link name="link_hind_left_foot">
+
+            <inertial>
+                <mass value="${foot_mass}"/>
+                <origin rpy="0 0 ${PId4}" xyz="${foot_centroid_x} ${foot_centroid_y} ${foot_height/2}"/>
+                <inertia ixx="${foot_Ixx}" ixy="${foot_Ixy}" ixz="${foot_Ixz}" iyy="${foot_Iyy}" iyz="${foot_Iyz}" izz="${foot_Izz}"/>
+            </inertial>
+            
+            <collision name="link_hind_left_foot_collision">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_hind_left_foot_visual">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+                <material name="black"/>   
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- hind right foot -->
+    <xacro:macro name = "hind_right_foot">
+            
+        <!--   Joint for right hind foot  -->
+        <joint name="joint_hind_right_foot_yaw" type="revolute">
+
+            <origin rpy="0 0 0" xyz="${leg_intra_length} ${-leg_diameter/2} 0"/> 
+            <parent link="link_hind_right_leg" />
+            <child link="link_hind_right_foot"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${knee_lower_radians}" upper="${knee_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${knee_damping}" friction="${knee_friction}" />
+
+        </joint>
+
+        <link name="link_hind_right_foot">
+
+            <inertial>
+                <mass value="${foot_mass}"/>
+                <origin rpy="0 0 ${PId4}" xyz="${foot_centroid_x} ${foot_centroid_y} ${foot_height/2}"/>
+                <inertia ixx="${foot_Ixx}" ixy="${foot_Ixy}" ixz="${foot_Ixz}" iyy="${foot_Iyy}" iyz="${foot_Iyz}" izz="${foot_Izz}"/>
+            </inertial>
+            
+            <collision name="link_hind_right_foot_collision">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_hind_right_foot_visual">
+                <origin rpy="0 0 0" xyz="0 0 ${-foot_height/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/foot.dae"/>
+                </geometry>
+                <material name="black"/>   
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+</robot>

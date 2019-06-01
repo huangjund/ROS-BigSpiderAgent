@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="agent" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="trans" param="pos joint Euler">
+        <transmission name="${pos}_${joint}_${Euler}">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="joint_${pos}_${joint}_${Euler}">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${pos}_${joint}_${Euler}_Motor">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <xacro:trans param="front_right hip yaw"/>
+    <xacro:trans param="front_left hip yaw"/>
+    <xacro:trans param="front_right hip Pitch"/>
+    <xacro:trans param="front_left hip Pitch"/>
+
+    <xacro:trans param="hind_right hip yaw"/>
+    <xacro:trans param="hind_left hip yaw"/>
+    <xacro:trans param="hind_right hip Pitch"/>
+    <xacro:trans param="hind_left hip Pitch"/>
+    
+    <xacro:trans param="front_right foot yaw"/>
+    <xacro:trans param="front_left foot yaw"/>
+
+    <xacro:trans param="hind_right foot yaw"/>
+    <xacro:trans param="hind_left foot yaw"/>
+
+
+</robot>

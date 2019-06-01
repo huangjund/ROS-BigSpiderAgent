@@ -1,0 +1,228 @@
+<?xml version = "1.0"?>
+<robot name = "agent" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- left front leg -->
+    <xacro:macro name = "front_left_leg">
+
+        <!--Front Left Hip Yaw-->
+        <joint name="joint_front_left_hip_yaw" type="revolute">
+
+            <origin rpy="0 0 ${PId4}" xyz="${hexa_radius/SquareRoot2} ${hexa_radius/SquareRoot2} ${leg_pos_from_bottem_hexabase}"/> 
+            <child link="link_front_left_hip_yaw" />
+            <parent link="link_hexabase"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hipyaw_lower_radians}" upper="${hipyaw_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hipyaw_damping}" friction="${hipyaw_friction}" />
+
+        </joint>
+        <link name="link_front_left_hip_yaw"/>
+
+        <!--   Front Left Hip Pitch  -->
+        <joint name="joint_front_left_hip_Pitch" type="revolute">
+
+            <origin rpy="${-PId2} 0 0" xyz="0 0 0"/> <!--90 22.5 45-->
+            <child link="link_front_left_leg" />
+            <parent link="link_front_left_hip_yaw"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hippitch_lower_radians}" upper="${hippitch_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hippitch_damping}" friction="${hippitch_friction}" />
+            <!--safety_controller-->
+
+        </joint>
+        <!--    Front left leg     -->
+        <link name="link_front_left_leg">  
+
+            <inertial>
+                <mass value="${leg_mass}"/>
+                <origin rpy="0 0 0" xyz="${leg_intra_length-leg_inter_length/2} ${knee_radius} ${leg_width/2}"/>    <!--centroid position-->
+                <inertia ixx="${leg_Ixx}" ixy="0" ixz="0" iyy="${leg_Iyy}" iyz="0" izz="${leg_Izz}"/>
+            </inertial>
+            
+            <collision name="link_front_left_leg_collision">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}" />
+                <geometry>
+                     <mesh filename = "package://urdf_describe/meshes/legcollision.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_front_left_leg_visual">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/leg.dae"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- right front leg -->
+    <xacro:macro name = "front_right_leg">
+
+        <!--Front Right Hip Yaw-->
+        <joint name="joint_front_right_hip_yaw" type="revolute">
+
+            <origin rpy="0 0 ${-PId4}" xyz="${hexa_radius/SquareRoot2} -${hexa_radius/SquareRoot2} ${leg_pos_from_bottem_hexabase}"/> 
+            <child link="link_front_right_hip_yaw" />
+            <parent link="link_hexabase"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hipyaw_lower_radians}" upper="${hipyaw_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hipyaw_damping}" friction="${hipyaw_friction}" />
+
+        </joint>
+        <link name="link_front_right_hip_yaw"/>
+
+        <!--   Front Right Hip Pitch  -->
+        <joint name="joint_front_right_hip_Pitch" type="revolute">
+
+            <origin rpy="${-PId2} 0 0" xyz="0 0 0"/> <!--90 22.5 45-->
+            <child link="link_front_right_leg" />
+            <parent link="link_front_right_hip_yaw"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hippitch_lower_radians}" upper="${hippitch_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hippitch_damping}" friction="${hippitch_friction}" />
+            <!--safety_controller-->
+
+        </joint>
+        <!--    Front Right leg     -->
+        <link name="link_front_right_leg">  
+
+            <inertial>
+                <mass value="${leg_mass}"/>
+                <origin rpy="0 0 0" xyz="${leg_intra_length-leg_inter_length/2} ${knee_radius} ${leg_width/2}"/>    <!--centroid position-->
+                <inertia ixx="${leg_Ixx}" ixy="0" ixz="0" iyy="${leg_Iyy}" iyz="0" izz="${leg_Izz}"/>
+            </inertial>
+            
+            <collision name="link_front_right_leg_collision">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/legcollision.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_front_right_leg_visual">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/leg.dae"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- left hind leg -->
+    <xacro:macro name = "hind_left_leg">
+
+        <!--hind Left Hip Yaw-->
+        <joint name="joint_hind_left_hip_yaw" type="revolute">
+
+            <origin rpy="0 0 ${PId4+PId2}" xyz="${-hexa_radius/SquareRoot2} ${hexa_radius/SquareRoot2} ${leg_pos_from_bottem_hexabase}"/> 
+            <child link="link_hind_left_hip_yaw" />
+            <parent link="link_hexabase"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hipyaw_lower_radians}" upper="${hipyaw_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hipyaw_damping}" friction="${hipyaw_friction}" />
+
+        </joint>
+        <link name="link_hind_left_hip_yaw"/>
+
+        <!--   hind Left Hip Pitch  -->
+        <joint name="joint_hind_left_hip_Pitch" type="revolute">
+
+            <origin rpy="${-PId2} 0 0" xyz="0 0 0"/> <!--90 22.5 45-->
+            <child link="link_hind_left_leg" />
+            <parent link="link_hind_left_hip_yaw"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hippitch_lower_radians}" upper="${hippitch_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hippitch_damping}" friction="${hippitch_friction}" />
+            <!--safety_controller-->
+
+        </joint>
+        <!--    hind left leg     -->
+        <link name="link_hind_left_leg">  
+
+            <inertial>
+                <mass value="${leg_mass}"/>
+                <origin rpy="0 0 0" xyz="${leg_intra_length-leg_inter_length/2} ${knee_radius} ${leg_width/2}"/>    <!--centroid position-->
+                <inertia ixx="${leg_Ixx}" ixy="0" ixz="0" iyy="${leg_Iyy}" iyz="0" izz="${leg_Izz}"/>
+            </inertial>
+            
+            <collision name="link_hind_left_leg_collision">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/legcollision.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_hind_left_leg_visual">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/leg.dae"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+    <!-- right hind leg -->
+    <xacro:macro name = "hind_right_leg">
+
+        <!--hind Right Hip Yaw-->
+        <joint name="joint_hind_right_hip_yaw" type="revolute">
+
+            <origin rpy="0 0 ${-PId4-PId2}" xyz="${-hexa_radius/SquareRoot2} ${-hexa_radius/SquareRoot2} ${leg_pos_from_bottem_hexabase}"/> 
+            <child link="link_hind_right_hip_yaw" />
+            <parent link="link_hexabase"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hipyaw_lower_radians}" upper="${hipyaw_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hipyaw_damping}" friction="${hipyaw_friction}" />
+
+        </joint>
+        <link name="link_hind_right_hip_yaw"/>
+
+        <!--   hind Right Hip Pitch  -->
+        <joint name="joint_hind_right_hip_Pitch" type="revolute">
+
+            <origin rpy="${-PId2} 0 0" xyz="0 0 0"/> <!--90 22.5 45-->
+            <child link="link_hind_right_leg" />
+            <parent link="link_hind_right_hip_yaw"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${hippitch_lower_radians}" upper="${hippitch_upper_radians}" effort="${UpperJointEffort}" velocity="${UpperJointVelocity}"/>
+            <dynamics damping="${hippitch_damping}" friction="${hippitch_friction}" />
+            <!--safety_controller-->
+
+        </joint>
+        <!--    hind Right leg     -->
+        <link name="link_hind_right_leg">  
+
+            <inertial>
+                <mass value="${leg_mass}"/>
+                <origin rpy="0 0 0" xyz="${leg_intra_length-leg_inter_length/2} ${knee_radius} ${leg_width/2}"/>    <!--centroid position-->
+                <inertia ixx="${leg_Ixx}" ixy="0" ixz="0" iyy="${leg_Iyy}" iyz="0" izz="${leg_Izz}"/>
+            </inertial>
+            
+            <collision name="link_hind_right_leg_collision">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}" />
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/legcollision.dae"/>
+                </geometry>
+            </collision>
+            
+            <visual name="link_hind_right_leg_visual">
+                <origin rpy="${PI} 0 0" xyz="0 0 ${leg_width/2}"/>
+                <geometry>
+                    <mesh filename = "package://urdf_describe/meshes/leg.dae"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            
+        </link>
+
+    </xacro:macro>
+
+</robot>

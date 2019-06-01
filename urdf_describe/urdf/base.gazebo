@@ -1,0 +1,35 @@
+<?xml version = "1.0"?>
+<robot name = "agent" xmlns:xacro = "http://ros.org/wiki/xacro">
+  <gazebo reference="link_hexabase">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="link_front_right_leg">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_front_right_leg">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_behind_right_leg">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_behind_right_leg">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_front_right_foot">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_front_right_foot">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_behind_right_foot">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="link_behind_right_foot">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo>
+    <plugin name="gazebo_ros_control" filenmae="libgazebo_ros_control.so">
+      <robotNamespace>/agent</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>

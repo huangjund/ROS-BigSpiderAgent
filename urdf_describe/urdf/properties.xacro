@@ -1,0 +1,67 @@
+<?xml version = "1.0"?>
+<robot name = "agent" xmlns:xacro = "http://ros.org/wiki/xacro">
+
+      <!--some constants-->
+      <xacro:property name="PI" value="3.1415926535897931"/>
+      <xacro:property name="PId2" value="1.57079632679489661923"/>
+      <xacro:property name="PId4" value="0.78539816339744830961566"/>
+      <xacro:property name="SquareRoot2" value = "1.4142135623730950488"/>
+      <xacro:property name="SquareRoot3" value = "1.7320508075688772935274463415"/>
+
+      <xacro:property name="UpperJointEffort" value="1000"/>
+      <xacro:property name="UpperJointVelocity" value="100"/>
+
+      <!--body property-->
+      <xacro:property name="camera_calibration_y" value="0.025"/>
+      <xacro:property name="hexa_side_length" value="0.19"/>
+      <xacro:property name="hexa_diameter" value="0.45"/>
+      <xacro:property name="hexa_radius" value="0.225"/>
+      <xacro:property name="hexa_height" value="0.15"/>
+      <xacro:property name="hexa_inner_angle" value="2.35619449"/>  <!--135 degree-->
+
+      <xacro:property name="hexa_mass" value="5"/>
+
+      <!--leg property-->
+      <xacro:property name="leg_intra_length" value="0.14"/>
+      <xacro:property name="leg_pos_from_bottem_hexabase" value="0.03"/>
+      <xacro:property name="leg_inter_length" value="0.05"/>
+      <xacro:property name="leg_diameter" value="0.08"/>
+      <xacro:property name="leg_width" value="0.07"/>
+
+      <xacro:property name="hipyaw_damping" value="0.3"/>   <!--dimension : (N * m * s)/rad-->
+      <xacro:property name="hipyaw_friction" value="0.3"/>  <!--dimension : N * m-->
+      <xacro:property name="hipyaw_lower_radians" value="0"/>
+      <xacro:property name="hipyaw_upper_radians" value="${PId2}"/>
+      <xacro:property name="hippitch_damping" value="0.3"/>   <!--dimension : (N * m * s)/rad-->
+      <xacro:property name="hippitch_friction" value="0.3"/>  <!--dimension : N * m-->
+      <xacro:property name="hippitch_lower_radians" value="0"/>
+      <xacro:property name="hippitch_upper_radians" value="${PId2}"/>
+
+      <xacro:property name="leg_mass" value="1"/>
+      <xacro:property name="leg_Ixx" value="0.0009"/>
+      <xacro:property name="leg_Iyy" value="0.0006"/>
+      <xacro:property name="leg_Izz" value="0.0007"/>
+      <xacro:property name="leg_Ixy" value="0"/>
+      <xacro:property name="leg_Ixz" value="0"/>
+      <xacro:property name="leg_Iyz" value="0"/>
+
+      <!--foot property-->
+      <xacro:property name="foot_length" value="0.42"/>
+      <xacro:property name="knee_radius" value="0.04"/>
+      <xacro:property name="foot_height" value="0.05"/>
+      <xacro:property name="foot_centroid_x" value="0.135"/>
+      <xacro:property name="foot_centroid_y" value="0.135"/>
+
+      <xacro:property name="knee_damping" value="0.3"/>   <!--dimension : (N * m * s)/rad-->
+      <xacro:property name="knee_friction" value="0.3"/>  <!--dimension : N * m-->
+      <xacro:property name="knee_lower_radians" value="0"/>
+      <xacro:property name="knee_upper_radians" value="${PId2}"/>
+
+      <xacro:property name="foot_mass" value="1"/>
+      <xacro:property name="foot_Ixx" value="0.0002"/>
+      <xacro:property name="foot_Iyy" value="0.001"/>
+      <xacro:property name="foot_Izz" value="0.001"/>
+      <xacro:property name="foot_Ixy" value="-0.0001"/>
+      <xacro:property name="foot_Ixz" value="-0.0001"/>
+      <xacro:property name="foot_Iyz" value="-0.0001"/>
+</robot>

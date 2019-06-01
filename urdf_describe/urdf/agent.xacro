@@ -1,0 +1,7 @@
+<?xml version = "1.0"?>
+<robot name = "quadruped_agent" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find urdf_describe)/urdf/materials.xacro" />
+    <xacro:include filename="$(find urdf_describe)/urdf/properties.xacro" />
+
+</robot>
